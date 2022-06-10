@@ -1,0 +1,7 @@
+.Home_Container {
+   display: flex;
+   justify-content: center;
+   width: 80%;
+   height: 100%;
+   border: 2px solid red;
+}
