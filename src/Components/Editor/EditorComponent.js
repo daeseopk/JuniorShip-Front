@@ -1,11 +1,12 @@
 import { React, useState } from "react";
 import Editor from "./Editor";
 import styles from "./Editor.module.css";
-import HashTag from "./HashTag";
+import EditorTag from "./EditorTag";
 
 export default function EditorComponent() {
    const [Title, setTitle] = useState();
    const [desc, setDesc] = useState();
+   const [Tags, setTags] = useState([]);
    const onEditorChange = (value) => {
       setDesc(value);
    };
@@ -27,8 +28,8 @@ export default function EditorComponent() {
                placeholder="내용을 입력하세요"
             />
          </div>
-         <div className={styles.HashtagWrapper}>
-            <HashTag />
+         <div className={styles.TagWrapper}>
+            <EditorTag Tags={Tags} setTags={setTags} />
          </div>
       </div>
    );

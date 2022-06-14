@@ -4,7 +4,6 @@ import "react-quill/dist/quill.snow.css";
 import ImageResize from "quill-image-resize-module-react";
 Quill.register("modules/imageResize", ImageResize);
 
-// 사용하고 싶은 옵션, 나열 되었으면 하는 순서대로 나열
 const toolbarOptions = [
    ["bold", "italic", "underline", "strike"], // toggled buttons
    [{ list: "ordered" }, { list: "bullet" }],
@@ -75,7 +74,7 @@ const Editor = ({ placeholder, value, onChange, ...rest }) => {
    return (
       <ReactQuill
          {...rest}
-         style={{ height: "100%" }}
+         style={{ height: "90%" }}
          ref={quillRef}
          value={value || ""}
          theme="snow"
