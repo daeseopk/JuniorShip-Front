@@ -2,6 +2,8 @@ import { React, useEffect, useRef } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import ImageResize from "quill-image-resize-module-react";
+import axios from "axios";
+
 Quill.register("modules/imageResize", ImageResize);
 
 const toolbarOptions = [
@@ -54,12 +56,13 @@ const Editor = ({ placeholder, value, onChange, ...rest }) => {
          input.click();
          input.onchange = async () => {
             const file = input.files[0];
+            console.log(file);
             const range = getEditor().getSelection(true);
             try {
-               // const filePath = `///${Date.now()}`; // 서버에 전달할 경로
+               const filePath = `username${Date.now()}`; // 파일 이름 지정
                const range = getEditor().getSelection(true);
-               // const url = await uploadImage(file, filePath); 서버 전달 예시 코드
-               getEditor().insertEmbed(range.index, "image", ""); // url > 반환받은 이미지 url
+               const url = await axios.post("https://", file, filePath); // 서버 요청 (이미지(BASE64형태), 파일 이름)
+               getEditor().insertEmbed(range.index, "image", url); // 에디터에 이미지 삽입 url = 서버에서 반환받은 url
             } catch (e) {
                getEditor().deleteText(range.index, 1);
             }

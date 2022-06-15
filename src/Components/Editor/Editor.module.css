@@ -25,37 +25,5 @@
    margin-top: 10px;
    width: 50%;
    height: 180px;
-}
-.TagInputWrapper {
-   width: 50%;
-   height: 40px;
-   display: flex;
-   align-items: center;
-}
-.TagInput {
-   width: 100%;
-   height: 100%;
-   outline: none;
-   border: none;
-   font-size: 20px;
-}
-.TagButton {
-   width: 70px;
-   height: 30px;
-   padding: 2px;
-}
-.TagShowWrapper {
-   padding: 10px;
-   margin-top: 20px;
-   width: 100%;
-   height: 110px;
-   border: 2px solid blue;
-   text-align: left;
-}
-.Tag {
-   cursor: pointer;
-   margin-right: 20px;
-   border-radius: 5px;
-   background: skyblue;
-   padding: 4px;
+   border: 2px solid red;
 }
