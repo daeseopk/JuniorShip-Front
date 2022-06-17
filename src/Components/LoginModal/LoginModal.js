@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import styles from "./LoginModal.module.css";
 import styled from "styled-components";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const ModalBackGround = styled.div`
    transition: 0.3s ease all;
@@ -51,7 +52,6 @@ export default function LoginModal() {
    const CONCEPT_COLOR = "rgb(151,202,219)";
    const Btn_Hover_Color = "rgb(131,197,189)";
    const [BtnColor, setBtnColor] = useState(CONCEPT_COLOR);
-   console.log(id, password);
    return (
       // TODO: z-index, visibility, opacity Redux로 관리하기(어떤 페이지, 컴포넌트에서도 로그인 모달창 접근 가능하도록)
       // Modal의 visiblity 변화 시 ModalBackGround의 background 값에 변화 주어야 함(배경 어둡게)
@@ -63,7 +63,6 @@ export default function LoginModal() {
             opacity="1">
             <span className={styles.Icon}></span>
             <div className={styles.Login_BodyContainer}>
-               <div className={styles.Login_InputWrapper}>
                   <p>아이디</p>
                   <input
                      onChange={(e) => setId(e.target.value)}
@@ -99,7 +98,7 @@ export default function LoginModal() {
                      로그인
                   </LoginBtn>
                   <p style={{ textAlign: "center", marginTop: "12px" }}>또는</p>
-               </div>
+                  <SocialLogin/>
             </div>
          </LoginContainer>
       </ModalBackGround>

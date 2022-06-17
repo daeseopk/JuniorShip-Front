@@ -14,14 +14,10 @@
    left: 50%;
    transform: translate(-50%, 0);
    width: 75%;
-   height: 350px;
-}
-.Login_InputWrapper {
-   width: 100%;
-   height: 65%;
    text-align: left;
+   height: 320px;
 }
-.Login_InputWrapper p {
+.Login_BodyContainer p {
    font-size: 13px;
    margin: 0px;
    margin-top: 10px;
