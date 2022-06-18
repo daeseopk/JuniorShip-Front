@@ -1,0 +1,44 @@
+.SignUpBodyWrapper {
+   width: 80%;
+   height: 100%;
+}
+.TitleWrapper {
+   position: relative;
+   top: 10%;
+   width: 800px;
+   height: 100px;
+   text-align: left;
+}
+.TitleWrapper h1 {
+   font-size: 40px;
+   margin: 0;
+}
+.TitleWrapper h2 {
+   margin: 0;
+   margin-top: 20px;
+   font-size: 25px;
+   color: rgb(130, 130, 130);
+}
+.CardContainer {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   top: 22%;
+   width: 100%;
+   height: 220px;
+}
+.CardBodyWrapper {
+   width: 78%;
+   height: 78%;
+}
+.CardBodyWrapper h1 {
+   margin: 0;
+   margin-bottom: 30px;
+}
+.CardBodyWrapper p {
+   font-size: 14px;
+   margin: 0;
+   margin-bottom: 7px;
+   color: rgb(130, 130, 130);
+}

@@ -31,7 +31,7 @@ const LoginContainer = styled.div`
    opacity: ${(prop) => prop.opacity};
    z-index:${(prop) => prop.z_index}
    color: #6ABCE2;
-   background-color: rgb(240, 240, 242);
+   background-color: #f0f0f3;
    box-shadow: 7px 7px 15px 7px rgba(16, 16, 16, 0.2);
 `;
 const LoginBtn = styled.div`
@@ -87,11 +87,13 @@ export default function LoginModal() {
                className={styles.Icon}
                alt="Profile"
             />
-            <div
+            <img
+               src={require("../../Images/closeBtn.png")}
+               alt="closeBtn"
                onClick={() => dispatch(setVisible({ isVisible: false }))}
-               className={styles.CloseBtn}>
-               x
-            </div>
+               className={styles.CloseBtn}
+            />
+
             <div className={styles.Login_BodyContainer}>
                <p>아이디</p>
                <input
@@ -123,11 +125,13 @@ export default function LoginModal() {
                      type="checkbox"
                   />
                   <span
+                     onClick={() => setIsChecked(!isChecked)}
                      style={{
                         position: "relative",
                         color: "#6abce2",
                         fontWeight: "900",
                         fontSize: "13px",
+                        cursor: "pointer",
                      }}>
                      아이디 저장
                   </span>
