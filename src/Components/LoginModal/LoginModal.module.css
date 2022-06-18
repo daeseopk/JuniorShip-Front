@@ -41,3 +41,15 @@
    display: flex;
    align-items: center;
 }
+.CloseBtn {
+   position: absolute;
+   left: 90%;
+   top: 3%;
+   border: 1px solid black;
+   width: 25px;
+   height: 25px;
+   border-radius: 5px;
+   box-shadow: -12px -12px 20px 0 #fff;
+   background-color: #f0f0f3;
+   cursor: pointer;
+}

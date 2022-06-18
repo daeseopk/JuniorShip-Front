@@ -1,8 +1,12 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import styles from "./LoginModal.module.css";
 import styled from "styled-components";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setVisible } from "../../Redux/visibility";
 
+const CONCEPT_COLOR = "#6abce2";
 const ModalBackGround = styled.div`
    transition: 0.3s ease all;
    position: fixed;
@@ -14,6 +18,7 @@ const ModalBackGround = styled.div`
    bottom: 0;
    right: 0;
    background: ${(prop) => prop.background};
+   z-index: ${(prop) => prop.z_index};
 `;
 const LoginContainer = styled.div`
    position: fixed;
@@ -24,7 +29,6 @@ const LoginContainer = styled.div`
    transition: 0.3s ease all;
    border-radius: 39px;
    opacity: ${(prop) => prop.opacity};
-   visibility: ${(prop) => prop.visibility};
    z-index:${(prop) => prop.z_index}
    color: #6ABCE2;
    background-color: rgb(240, 240, 242);
@@ -36,7 +40,7 @@ const LoginBtn = styled.div`
    width: 100%;
    height: 55px;
    color: white;
-   background-color: #6abce2;
+   background-color: ${(prop) => prop.backgroundColor};
    border-radius: 10px;
    justify-content: center;
    align-items: center;
@@ -44,28 +48,54 @@ const LoginBtn = styled.div`
    font-weight: 900;
    transition: 0.3s all ease;
    cursor: pointer;
-   &:hover {
-      background-color: #5496b4;
-   }
 `;
 
 export default function LoginModal() {
    const [id, setId] = useState();
    const [password, setPassword] = useState();
+   const [LoginBtnColor, setLoginBtnColor] = useState(CONCEPT_COLOR);
+   const [isChecked, setIsChecked] = useState(false);
+   const visibility = useSelector((state) => state.visibility.value); // Modal visibility 상태 관리 default : false
+   const dispatch = useDispatch();
 
+   useEffect(() => {
+      if (window.localStorage.getItem("Rememberid")) {
+         setId(window.localStorage.getItem("Rememberid"));
+         setIsChecked(true);
+      }
+   }, []);
+   const onClick_Login = () => {
+      //TODO 로그인 기능
+      console.log(id, password);
+      // 로그인 성공 시
+      if (isChecked) {
+         localStorage.setItem("Rememberid", id);
+      } else {
+         localStorage.removeItem("Rememberid");
+      }
+   };
    return (
-      // TODO: z-index, opacity Redux로 관리하기(어떤 페이지, 컴포넌트에서도 로그인 모달창 접근 가능하도록)
-      // Modal의 zindex, opacity변화 시 ModalBackGround의 background 값에 변화 주어야 함(배경 어둡게)
-      <ModalBackGround background="rgba(0,0,0,0.4)">
-         <LoginContainer z_index="99" opacity="1">
+      // ModalBackGround
+      // LoginContainer
+      // visibility.isVisible(Redux) 값이 true 면 Modal창 보이기 및 배경 색 어둡게 default : false
+      <ModalBackGround
+         z_index={visibility.isVisible ? "99" : "-1"}
+         background={visibility.isVisible ? "rgba(0,0,0,0.4)" : "none"}>
+         <LoginContainer opacity={visibility.isVisible ? "1" : "0"}>
             <img
                src={require("../../Images/Profile.png")}
                className={styles.Icon}
                alt="Profile"
             />
+            <div
+               onClick={() => dispatch(setVisible({ isVisible: false }))}
+               className={styles.CloseBtn}>
+               x
+            </div>
             <div className={styles.Login_BodyContainer}>
                <p>아이디</p>
                <input
+                  value={id}
                   onChange={(e) => setId(e.target.value)}
                   className={styles.Login_Input}
                   type="id"
@@ -80,9 +110,10 @@ export default function LoginModal() {
                   type="password"
                   name="password"
                />
-
                <div className={styles.ThinBlockWrapper}>
                   <input
+                     checked={isChecked}
+                     onChange={() => setIsChecked(!isChecked)}
                      style={{
                         position: "relative",
                         border: "solid 1.5px #6abce2",
@@ -112,8 +143,15 @@ export default function LoginModal() {
                      패스워드를 잊으셨습니까?
                   </span>
                </div>
-
-               <LoginBtn>로그인</LoginBtn>
+               <LoginBtn
+                  onClick={onClick_Login}
+                  onMouseEnter={() => setLoginBtnColor("#5496b4")}
+                  onMouseLeave={() => setLoginBtnColor(CONCEPT_COLOR)}
+                  onMouseDown={() => setLoginBtnColor("#3f7087")}
+                  onMouseUp={() => setLoginBtnColor("#5496b4")}
+                  backgroundColor={LoginBtnColor}>
+                  로그인
+               </LoginBtn>
                <p
                   style={{
                      textAlign: "center",

@@ -1,6 +1,8 @@
-import { createStore } from "redux";
-import rootReducer from "./rootReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import visibilityReducer from "../Redux/visibility";
 
-const store = createStore(rootReducer);
-
-export default store;
+export default configureStore({
+   reducer: {
+      visibility: visibilityReducer,
+   },
+});
