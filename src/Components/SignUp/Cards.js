@@ -32,9 +32,14 @@ export default function Cards({
    border,
    setBorder,
 }) {
+   const defaultBorder = [
+      "2px solid rgba(220, 220, 220, 0.2)",
+      "2px solid rgba(220, 220, 220, 0.2)",
+      "2px solid rgba(220, 220, 220, 0.2)",
+   ];
    const onClick_Card = (e) => {
       setSelect(e.target.id);
-      var border_ = ["none", "none", "none"];
+      var border_ = defaultBorder;
       border_[e.target.id] = "2px solid blue";
       setBorder(border_);
    };
