@@ -11,14 +11,18 @@ const SignUpContainer = styled.div`
    left: ${(prop) => prop.left};
    width: 100%;
    height: 75%;
-   transition: 1s ease all;
+   transition: 0.8s ease all;
 `;
 
-export default function SignUpBody({ setSelect }) {
-   const [border, setBorder] = useState(["none", "none", "none"]);
+export default function SignUpBody({ setSelect, status }) {
+   const [border, setBorder] = useState([
+      "2px solid rgba(220, 220, 220, 0.2)",
+      "2px solid rgba(220, 220, 220, 0.2)",
+      "2px solid rgba(220, 220, 220, 0.2)",
+   ]);
    return (
       //페이지 전환 시 left -100%
-      <SignUpContainer left="0%">
+      <SignUpContainer left={status === 0 ? "0%" : "-100%"}>
          <div className={styles.SignUpBodyWrapper}>
             <div className={styles.TitleWrapper}>
                <h1>자신에게 맞는 단계를 선택하여 주십시오</h1>

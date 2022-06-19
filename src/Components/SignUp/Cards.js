@@ -8,15 +8,14 @@ const Card = styled.div`
    align-items: center;
    width: 200px;
    height: 200px;
-   margin-right: 50px;
-   margin-left: 50px;
+   margin-right: ${(prop) => prop.marginRight};
    text-align: left;
    background-color: rgba(220, 220, 220, 0.2);
    border-radius: 20px;
    border: ${(prop) => prop.border};
    box-shadow: 4px 4px 10px 0 rgba(16, 16, 16, 0.4);
    cursor: pointer;
-   transition: 0.3s ease all;
+   transition: 0.4s ease all;
    &:hover {
       transform: scale(1.1);
       box-shadow: 15px 15px 20px 0 rgba(16, 16, 16, 0.4);
@@ -32,21 +31,26 @@ export default function Cards({
    border,
    setBorder,
 }) {
-   const defaultBorder = [
+   var defaultBorder = [
       "2px solid rgba(220, 220, 220, 0.2)",
       "2px solid rgba(220, 220, 220, 0.2)",
       "2px solid rgba(220, 220, 220, 0.2)",
    ];
+
    const onClick_Card = (e) => {
       setSelect(e.target.id);
       var border_ = defaultBorder;
       border_[e.target.id] = "2px solid blue";
       setBorder(border_);
    };
-   console.log(border);
+
    return (
-      // TODO id 상속 하는 방법 찾기
-      <Card onClick={onClick_Card} id={id} border={border[id]}>
+      // TODO 이벤트 상속하는 방법 찾기
+      <Card
+         marginRight={parseInt(id) === 2 ? "0px" : "100px"}
+         onClick={onClick_Card}
+         id={id}
+         border={border[id]}>
          <div id={id} className={styles.CardBodyWrapper}>
             <h1 id={id}>{title}</h1>
             <p id={id}>{subtitle[0]}</p>

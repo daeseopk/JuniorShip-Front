@@ -1,6 +1,6 @@
 .Container {
    display: flex;
-   width: 100%;
+   width: 1920px;
    height: 100vh;
    justify-content: center;
 }
@@ -8,6 +8,6 @@
    display: block;
    justify-content: center;
    width: 80%;
+   min-width: 1150px;
    height: 100%;
-   border: 2px solid blue;
 }
