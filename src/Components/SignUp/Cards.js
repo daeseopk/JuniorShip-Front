@@ -48,7 +48,7 @@ export default function Cards({
       // TODO 이벤트 상속하는 방법 찾기
       <Card
          marginRight={parseInt(id) === 2 ? "0px" : "100px"}
-         onClick={onClick_Card}
+         onClick={onClick_Card} // 주니어, 아마추어, 시니어 세팅
          id={id}
          border={border[id]}>
          <div id={id} className={styles.CardBodyWrapper}>

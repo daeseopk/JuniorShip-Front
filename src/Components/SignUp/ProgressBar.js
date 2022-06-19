@@ -1,8 +1,9 @@
-import { React, useState } from "react";
+import { React } from "react";
 import styles from "./ProgressBar.module.css";
 import { ReactComponent as Circle } from "../../Images/Circle.svg";
 import { ReactComponent as Check } from "../../Images/check.svg";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const ProgressLine = styled.div`
    position: relative;
@@ -13,20 +14,22 @@ const ProgressLine = styled.div`
    z-index: 1;
 `;
 
-export default function ProgressBar({ status, setStatus }) {
+export default function ProgressBar() {
    const Circles = [Circle, Circle, Circle];
+   const status_redux = useSelector((state) => state.status.value.status);
+   console.log(status_redux);
    return (
       <div className={styles.ProgressBarContainer}>
          <div className={styles.ProgressLineWrapper}>
             <ProgressLine
                width={
-                  status === 0
+                  status_redux === 0
                      ? "0%"
-                     : status === 1
+                     : status_redux === 1
                      ? "25%"
-                     : status === 2
+                     : status_redux === 2
                      ? "50%"
-                     : status === 3
+                     : status_redux === 3
                      ? "75%"
                      : "100%"
                }
@@ -40,7 +43,9 @@ export default function ProgressBar({ status, setStatus }) {
                   key={index}
                   width="50px"
                   height="50px"
-                  fill={status > index * 2 ? "skyblue" : "rgb(220,220,220)"}
+                  fill={
+                     status_redux > index * 2 ? "skyblue" : "rgb(220,220,220)"
+                  }
                />
                <div className={styles.CheckWrapper}>
                   <Check
@@ -48,7 +53,7 @@ export default function ProgressBar({ status, setStatus }) {
                      id={index}
                      width="50px"
                      height="50px"
-                     fill={status > index * 2 ? "white" : "none"}
+                     fill={status_redux > index * 2 ? "white" : "none"}
                   />
                </div>
             </div>
