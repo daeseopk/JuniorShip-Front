@@ -8,14 +8,3 @@
    width: fit-content;
    height: 100px;
 }
-.Btn {
-   display: flex;
-   width: 120px;
-   height: 50px;
-   background-color: skyblue;
-   border-radius: 10px;
-   margin-right: 20px;
-   margin-left: 20px;
-   align-items: center;
-   justify-content: center;
-}
