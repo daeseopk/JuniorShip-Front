@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import styles from "./SignUp.module.css";
 import ProgressBar from "../../Components/SignUp/ProgressBar";
 import SignUpOne from "../../Components/SignUp/SignUpOne";
+import SignUpTwo from "../../Components/SignUp/SignUpTwo";
 import Btn from "../../Components/SignUp/Btn";
 
 export default function SignUp() {
@@ -12,7 +13,10 @@ export default function SignUp() {
       <div className={styles.Container}>
          <div className={styles.SignUpContainer}>
             <ProgressBar />
-            <SignUpOne setSelect={setSelect} />
+            <div className={styles.SignUpBodyWrapper}>
+               <SignUpOne setSelect={setSelect} />
+               <SignUpTwo />
+            </div>
             <Btn
                select={select}
                activeBtn={activeBtn}

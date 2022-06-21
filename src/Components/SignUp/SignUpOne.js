@@ -1,19 +1,8 @@
 import { React, useState } from "react";
-import styled from "styled-components";
 import styles from "./SignUpBody.module.css";
 import Cards from "./Cards";
 import { useSelector } from "react-redux";
-
-const SignUpContainer = styled.div`
-   position: relative;
-   display: flex;
-   justify-content: center;
-   top: 10%;
-   left: ${(prop) => prop.left};
-   width: 100%;
-   height: 75%;
-   transition: 0.8s ease all;
-`;
+import SignUpBodyContainer from "./SignUpBodyContainer";
 
 export default function SignUpBody({ setSelect }) {
    const status_redux = useSelector((state) => state.status.value.status);
@@ -39,7 +28,9 @@ export default function SignUpBody({ setSelect }) {
 
    return (
       //페이지 전환 시 left -100%
-      <SignUpContainer left={status_redux === 0 ? "0%" : "-100%"}>
+      <SignUpBodyContainer
+         z_index={status_redux === 0 ? "99" : "-1"}
+         left={status_redux === 0 ? "0%" : "-100%"}>
          <div className={styles.SignUpBodyWrapper}>
             <div className={styles.TitleWrapper}>
                <h1>자신에게 맞는 단계를 선택하여 주십시오</h1>
@@ -58,6 +49,6 @@ export default function SignUpBody({ setSelect }) {
                ))}
             </div>
          </div>
-      </SignUpContainer>
+      </SignUpBodyContainer>
    );
 }
