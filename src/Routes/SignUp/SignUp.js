@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import styles from "./SignUp.module.css";
 import ProgressBar from "../../Components/SignUp/ProgressBar";
+import ProgressBarLine from "../../Components/SignUp/ProgressBar_Line";
 import SignUpOne from "../../Components/SignUp/SignUpOne";
 import SignUpTwo from "../../Components/SignUp/SignUpTwo";
 import Btn from "../../Components/SignUp/Btn";
@@ -12,7 +13,8 @@ export default function SignUp() {
    return (
       <div className={styles.Container}>
          <div className={styles.SignUpContainer}>
-            <ProgressBar />
+            {/* <ProgressBar /> 하늘색 게이지 버전 */}
+            <ProgressBarLine />
             <div className={styles.SignUpBodyWrapper}>
                <SignUpOne setSelect={setSelect} />
                <SignUpTwo />

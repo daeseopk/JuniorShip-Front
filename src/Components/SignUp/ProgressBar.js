@@ -17,7 +17,6 @@ const ProgressLine = styled.div`
 export default function ProgressBar() {
    const Circles = [Circle, Circle, Circle];
    const status_redux = useSelector((state) => state.status.value.status);
-   console.log(status_redux);
    return (
       <div className={styles.ProgressBarContainer}>
          <div className={styles.ProgressLineWrapper}>

@@ -8,8 +8,7 @@ const SignUpContainer = styled.div`
    left: ${(prop) => prop.left};
    z-index: ${(prop) => prop.z_index};
    width: 100%;
-   height: 65%;
+   height: 80%;
    transition: 0.8s ease all;
-   border: 2px solid red;
 `;
 export default SignUpContainer;

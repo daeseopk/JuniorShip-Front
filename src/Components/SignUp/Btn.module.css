@@ -1,11 +1,12 @@
 .BtnContainer {
+   position: relative;
    display: flex;
    align-items: center;
    justify-content: center;
    left: 50%;
    bottom: 25%;
    transform: translate(-50%, 0);
-   position: relative;
    width: fit-content;
    height: 100px;
+   z-index: 99;
 }

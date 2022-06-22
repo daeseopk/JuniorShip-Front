@@ -5,21 +5,23 @@ import { setStatus_plus, setStatus_minus } from "../../Redux/status";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { ReactComponent as Arrow } from "../../Images/ArrowBtn.svg";
 
 const Button = styled.div`
    display: flex;
-   width: 120px;
-   height: 50px;
-   background-color: ${(prop) => prop.backgroundcolor};
-   border-radius: 10px;
-   margin-right: 20px;
-   margin-left: 20px;
+   width: ${(prop) => prop.width};
+   height: 60px;
+   background-color: f0f0f3;
+   border-radius: 15px;
+   box-shadow: 10px 10px 24px 0 rgba(13, 39, 80, 0.16);
+   margin-right: ${(prop) => prop.marginRight};
+   margin-left: ${(prop) => prop.marginLeft};
    align-items: center;
    justify-content: center;
    visibility: ${(prop) => prop.visibility};
    opacity: ${(prop) => prop.opacity};
    transform: ${(prop) => prop.transform};
-   transition: 0.3s ease all;
+   transition: 0.5s ease all;
 `;
 
 export default function Btn({ select, activeBtn, setActiveBtn }) {
@@ -53,19 +55,27 @@ export default function Btn({ select, activeBtn, setActiveBtn }) {
    return (
       <div className={styles.BtnContainer}>
          <Button
+            marginLeft="20px"
+            marginRight="20px"
+            width="60px"
+            style={{ cursor: "pointer" }}
             backgroundcolor="skyblue"
             visibility={status_redux === 0 ? "hidden" : "visible"}
             opacity={status_redux === 0 ? "0" : "1"}
             id="prev"
             onClick={onClickBtn}>
-            이전
+            <Arrow style={{ transform: "rotate(180deg)" }} id="prev" />
          </Button>
          <Button
+            marginLeft={status_redux === 0 ? "85px" : "20px"}
+            marginRight={status_redux === 0 ? "0px" : "20px"}
+            width={status_redux === 0 ? "140px" : "60px"}
+            style={{ cursor: "pointer" }}
             transform={status_redux === 0 ? "translate(-65%, 0)" : "none"}
             id="next"
             backgroundcolor={activeBtn ? "skyblue" : "gray"} // 버튼 활성화 조건에 따라 버튼 비활성화
             onClick={activeBtn ? onClickBtn : null}>
-            다음
+            <Arrow id="next" fill={activeBtn ? "black" : "#868686"} />
          </Button>
       </div>
    );
