@@ -1,7 +1,6 @@
 .SignUpBodyWrapper {
    width: 80%;
    height: 100%;
-   border: 2px solid blue;
 }
 .TitleWrapper {
    position: relative;
@@ -55,22 +54,37 @@
 .SignUpInputContainer {
    width: 100%;
    height: 100%;
-   border: 2px solid red;
 }
+/* 페이지2 오른쪽 컨테이터 */
 .Logo {
+   display: flex;
+   justify-content: center;
+   align-items: center;
    width: 100%;
    height: 100%;
 }
+/* ----------------- */
 
 .Login_BodyContainer {
    position: relative;
    left: 50%;
    transform: translate(-50%, 0);
-   width: 60%;
+   width: 350px;
    height: 100%;
 }
-.Login_BodyContainer p {
-   margin-left: 20px;
+
+.InputWrapper {
+   text-align: left;
+   margin-bottom: 20px;
+   width: fit-content;
+   height: fit-content;
+}
+.InputEmailWrapper {
+   width: 360px;
+   height: 55px;
+   display: flex;
+}
+.InputWrapper p {
    margin-bottom: 4px;
    color: #6abce2;
    font-family: NotoSansOriya;
@@ -78,24 +92,4 @@
    font-weight: bold;
    text-align: left;
    color: #6abce2;
-}
-.eye1 {
-   margin-top: 17px;
-   position: absolute;
-   width: 25px;
-   height: 25px;
-   right: 30px;
-   transition: 0.3s ease all;
-}
-.eye1:hover,
-.eye2:hover {
-   filter: invert(0%) sepia(81%) saturate(7488%) hue-rotate(120deg)
-      brightness(90%) contrast(96%);
-}
-.eye2 {
-   margin-top: 36px;
-   position: absolute;
-   width: 25px;
-   height: 25px;
-   right: 30px;
 }

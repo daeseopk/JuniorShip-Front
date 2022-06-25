@@ -24,9 +24,8 @@ const Button = styled.div`
    transition: 0.5s ease all;
 `;
 
-export default function Btn({ select, activeBtn, setActiveBtn }) {
+export default function Btn({ activeBtn }) {
    const status_redux = useSelector((state) => state.status.value.status);
-   const a = false; // 2페이지 버튼 활성화 조건(테스트)
    const dispatch = useDispatch();
    const onClickBtn = (e) => {
       // 버튼 활성화 조건이 충족될 떄만 동작
@@ -38,19 +37,6 @@ export default function Btn({ select, activeBtn, setActiveBtn }) {
          else dispatch(setStatus_plus());
       }
    };
-   useEffect(() => {
-      var activeBtn_ = activeBtn;
-      // if(status_redux===페이지 && (페이지별 버튼 활성화 조건)){
-      //    activeBtn_=true;
-      // }
-      if (status_redux === 0 && select) {
-         activeBtn_ = true;
-      } else if (status_redux === 1 && a) {
-         activeBtn_ = true;
-      } else activeBtn_ = false;
-
-      setActiveBtn(activeBtn_);
-   }, [status_redux, select]); // 페이지와 페이지별 버튼 활성화 조건이 업데이트 될 떄마다 실행
 
    return (
       <div className={styles.BtnContainer}>

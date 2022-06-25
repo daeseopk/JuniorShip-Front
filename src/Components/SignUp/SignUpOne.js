@@ -25,7 +25,6 @@ export default function SignUpBody({ setSelect }) {
          subtitle: ["경력 5년 이상", "5회 이상 프로젝트 참여"],
       },
    ];
-
    return (
       //페이지 전환 시 left -100%
       <SignUpBodyContainer
