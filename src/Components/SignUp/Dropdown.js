@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useRef } from "react";
 import styles from "./Dropdown.module.css";
 import styled from "styled-components";
 import { ReactComponent as Arrow } from "../../Images/ArrowBtn.svg";
@@ -17,7 +17,8 @@ const DropValue = styled.div`
    overflow: scroll;
 `;
 
-export default function Dropdown({ address, setAddress }) {
+export default function Dropdown({ address, setAddress, border }) {
+   const Email_Ref = useRef();
    const [visibleMenu, setVisibleMenu] = useState(false);
    const address_ = [
       "직접 입력",
@@ -34,14 +35,16 @@ export default function Dropdown({ address, setAddress }) {
          setAddress(address);
       } else {
          setAddress("");
+         Email_Ref.current.focus();
       }
-
       setVisibleMenu(false);
    };
    return (
       <div className={styles.dropdownWrapper}>
          <div className={styles.InputWrapper}>
             <input
+               style={{ border: `2px solid ${border}` }}
+               ref={Email_Ref}
                placeholder="직접 입력"
                onChange={(e) => setAddress(e.target.value)}
                value={address}

@@ -12,5 +12,6 @@ export const statuSlice = createSlice({
       },
    },
 });
+
 export const { setStatus_plus, setStatus_minus } = statuSlice.actions;
 export default statuSlice.reducer;

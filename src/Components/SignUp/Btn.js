@@ -1,11 +1,24 @@
 import React from "react";
 import styles from "./Btn.module.css";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { setStatus_plus, setStatus_minus } from "../../Redux/status";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { ReactComponent as Arrow } from "../../Images/ArrowBtn.svg";
+
+const shake = keyframes`
+0% {
+   transform: translate(-52%, 0);
+}
+20% {
+   transform: translate(-48%, 0);
+}
+40% {
+   transform: translate(-52%, 0);
+}
+60% {
+   transform: translate(-48%, 0);
+}`;
 
 const Button = styled.div`
    display: flex;
@@ -24,7 +37,7 @@ const Button = styled.div`
    transition: 0.5s ease all;
 `;
 
-export default function Btn({ activeBtn }) {
+export default function Btn({ activeBtn, setLoginBodyContainer_Class }) {
    const status_redux = useSelector((state) => state.status.value.status);
    const dispatch = useDispatch();
    const onClickBtn = (e) => {
@@ -37,7 +50,12 @@ export default function Btn({ activeBtn }) {
          else dispatch(setStatus_plus());
       }
    };
-
+   const onClick_shakeEvent = () => {
+      setLoginBodyContainer_Class("action");
+      setTimeout(function () {
+         setLoginBodyContainer_Class("default");
+      }, 400);
+   };
    return (
       <div className={styles.BtnContainer}>
          <Button
@@ -60,7 +78,7 @@ export default function Btn({ activeBtn }) {
             transform={status_redux === 0 ? "translate(-65%, 0)" : "none"}
             id="next"
             backgroundcolor={activeBtn ? "skyblue" : "gray"} // 버튼 활성화 조건에 따라 버튼 비활성화
-            onClick={activeBtn ? onClickBtn : null}>
+            onClick={activeBtn ? onClickBtn : onClick_shakeEvent}>
             <Arrow id="next" fill={activeBtn ? "black" : "#868686"} />
          </Button>
       </div>

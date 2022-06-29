@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import styles from "./SignUp.module.css";
 import ProgressBar from "../../Components/SignUp/ProgressBar";
 import ProgressBarLine from "../../Components/SignUp/ProgressBar_Line";
@@ -15,14 +15,18 @@ export default function SignUp() {
    const [nickname, setNickname] = useState(); // 닉네임
    const [confirm_nickname, setConfirm_nickname] = useState(false); // 닉네임 중복검사
    const [email, setEmail] = useState(); // 이메일 앞부분
-   const [confirm_email, setConfirm_email] = useState(false); // 이메일 중복검사
    const [address, setAddress] = useState(); // 이메일 뒷부분
+   const [confirm_email, setConfirm_email] = useState(false); // 이메일 중복, 직접입력 형식 검사
    const [id, setId] = useState(); // 아이디
-   const [confirm_id, setConfirm_id] = useState(false); // 아이디 중복검사
+   const [confirm_id, setConfirm_id] = useState(false); // 아이디 중복, 형식 검사
    const [password, setPassword] = useState(); // 비밀번호
+   const [password_check, setPassword_check] = useState(); // 비밀번호 재입력 체크
+   const [confirm_password, setConfirm_password] = useState(false); // 비밀번호 형식 검사
+
+   const [LoginBodyContainer_Class, setLoginBodyContainer_Class] =
+      useState("default"); // 클래스 이름 지정으로 회원가입창 애니메이션 구현 위함
 
    const status_redux = useSelector((state) => state.status.value.status);
-   var a = false;
    useEffect(() => {
       var activeBtn_ = activeBtn;
       // if(status_redux===페이지 && (페이지별 버튼 활성화 조건)){
@@ -34,13 +38,23 @@ export default function SignUp() {
          status_redux === 1 &&
          confirm_email &&
          confirm_id &&
-         confirm_nickname
+         // confirm_nickname &&
+         confirm_password &&
+         password === password_check
       ) {
          activeBtn_ = true;
       } else activeBtn_ = false;
 
       setActiveBtn(activeBtn_);
-   }, [status_redux, select]); // 페이지와 페이지별 버튼 활성화 조건이 업데이트 될 떄마다 실행
+   }, [
+      status_redux,
+      select,
+      confirm_email && confirm_id,
+      confirm_nickname,
+      confirm_password,
+      password,
+      password_check,
+   ]); // 페이지와 페이지별 버튼 활성화 조건이 업데이트 될 떄마다 실행
    return (
       <div className={styles.Container}>
          <div className={styles.SignUpContainer}>
@@ -59,12 +73,22 @@ export default function SignUp() {
                   setId={setId}
                   password={password}
                   setPassword={setPassword}
+                  password_check={password_check}
+                  setPassword_check={setPassword_check}
+                  confirm_id={confirm_id}
+                  setConfirm_id={setConfirm_id}
+                  confirm_nickname={confirm_nickname}
+                  setConfirm_nickname={setConfirm_email}
+                  confirm_email={confirm_email}
+                  setConfirm_email={setConfirm_email}
+                  confirm_password={confirm_password}
+                  setConfirm_password={setConfirm_password}
+                  LoginBodyContainer_Class={LoginBodyContainer_Class}
                />
             </div>
             <Btn
-               select={select}
                activeBtn={activeBtn}
-               setActiveBtn={setActiveBtn}
+               setLoginBodyContainer_Class={setLoginBodyContainer_Class}
             />
          </div>
       </div>
